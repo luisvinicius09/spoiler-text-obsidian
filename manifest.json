@@ -1,11 +1,11 @@
 {
-	"id": "sample-plugin",
-	"name": "Sample Plugin",
+	"id": "spoiler-text",
+	"name": "Spoiler Text",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
+	"description": "Creates a spoiler text block that can be toggled to reveal the text inside.",
+	"author": "rev0lts",
+	"authorUrl": "https://github.com/luisvinicius09",
 	"fundingUrl": "https://obsidian.md/pricing",
 	"isDesktopOnly": false
 }
