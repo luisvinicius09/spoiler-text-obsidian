@@ -1,3 +1,5 @@
+import { Plugin } from "obsidian";
+
 import { syntaxTree } from "@codemirror/language";
 import { RangeSetBuilder } from "@codemirror/state";
 import {
@@ -21,7 +23,7 @@ class SpoilerTextWidget extends WidgetType {
 	}
 }
 
-class SpoilerTextPlugin implements PluginValue {
+class SpoilerText implements PluginValue {
 	decorations: DecorationSet;
 
 	constructor(view: EditorView) {
@@ -44,8 +46,8 @@ class SpoilerTextPlugin implements PluginValue {
 				from,
 				to,
 				enter(node) {
-					console.log(node);
-					const listCharFrom = node.from - 2; // TODO: figure out what is this node.from
+					console.log('node', node);
+					const listCharFrom = node.from - 2;
 
 					// TODO: figure out how to get the value of the node
 
@@ -64,11 +66,16 @@ class SpoilerTextPlugin implements PluginValue {
 	}
 }
 
-const pluginSpec: PluginSpec<SpoilerTextPlugin> = {
-	decorations: (value: SpoilerTextPlugin) => value.decorations,
+const pluginSpec: PluginSpec<SpoilerText> = {
+	decorations: (value: SpoilerText) => value.decorations,
 };
 
-export const examplePlugin = ViewPlugin.fromClass(
-	SpoilerTextPlugin,
-	pluginSpec
-);
+export const spoilerTextPlugin = ViewPlugin.fromClass(SpoilerText, pluginSpec);
+
+export default class SpoilerTextPlugin extends Plugin {
+	async onload() {
+		this.registerEditorExtension(spoilerTextPlugin);
+	}
+
+	onunload(): void {}
+}
